@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+/* ===== Base Styles ===== */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #050505;
+  color: white;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #4169E1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6C9FFF;
+}
+
+/* ===== Hero Title Letter Animation ===== */
+.hero-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px) scale(0.3);
+  filter: blur(12px);
+  animation: letter-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes letter-in {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.3);
+    filter: blur(12px);
+    text-shadow: 0 0 0 transparent;
+  }
+  60% {
+    text-shadow: 
+      0 0 40px rgba(65, 105, 225, 0.9), 
+      0 0 80px rgba(65, 105, 225, 0.5),
+      0 0 120px rgba(65, 105, 225, 0.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    text-shadow: 
+      0 0 20px rgba(65, 105, 225, 0.4),
+      0 0 40px rgba(65, 105, 225, 0.15);
+  }
+}
+
+/* ===== Light Sweep Effect ===== */
+.light-sweep {
+  background: linear-gradient(
+    105deg, 
+    transparent 35%, 
+    rgba(255, 255, 255, 0.25) 45%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    rgba(255, 255, 255, 0.25) 55%, 
+    transparent 65%
+  );
+  background-size: 300% 100%;
+  animation: sweep 1.8s ease-in-out forwards;
+  animation-delay: 2.8s;
+  opacity: 0;
+}
+
+@keyframes sweep {
+  0% { 
+    background-position: 200% 0; 
+    opacity: 1;
+  }
+  100% { 
+    background-position: -100% 0; 
+    opacity: 0;
+  }
+}
+
+/* ===== Butterfly Wing Flap ===== */
+@media (hover: hover) {
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+.butterfly-left-wing {
+  transform-origin: 50px 50px;
+  animation: flap-left 0.6s ease-in-out infinite;
+}
+
+.butterfly-right-wing {
+  transform-origin: 50px 50px;
+  animation: flap-right 0.6s ease-in-out infinite;
+}
+
+@keyframes flap-left {
+  0%, 100% { transform: perspective(300px) rotateY(22deg); }
+  50% { transform: perspective(300px) rotateY(-8deg); }
+}
+
+@keyframes flap-right {
+  0%, 100% { transform: perspective(300px) rotateY(-22deg); }
+  50% { transform: perspective(300px) rotateY(8deg); }
+}
+
+/* ===== Button Glow Pulse ===== */
+.btn-glow {
+  animation: btn-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes btn-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(65, 105, 225, 0.3), 
+      0 0 40px rgba(65, 105, 225, 0.1),
+      inset 0 0 20px rgba(65, 105, 225, 0.05);
+  }
+  50% {
+    box-shadow: 
+      0 0 35px rgba(65, 105, 225, 0.5), 
+      0 0 70px rgba(65, 105, 225, 0.2),
+      0 0 100px rgba(65, 105, 225, 0.1),
+      inset 0 0 30px rgba(65, 105, 225, 0.1);
+  }
+}
+
+/* ===== Scroll Reveal Animations ===== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Click Ripple ===== */
+.ripple-effect {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ripple-expand 0.7s ease-out forwards;
+}
+
+@keyframes ripple-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+/* ===== Sparkle burst on click ===== */
+.sparkle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkle-fly 0.8s ease-out forwards;
+}
+
+@keyframes sparkle-fly {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+}
+
+/* ===== Floating animation ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+/* ===== Skill card glow ===== */
+.skill-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(65, 105, 225, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+}
+
+/* ===== Glow border animation for portrait ===== */
+@keyframes border-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== Staggered delays for skills ===== */
+.skill-delay-1 { transition-delay: 0.1s; }
+.skill-delay-2 { transition-delay: 0.2s; }
+.skill-delay-3 { transition-delay: 0.3s; }
+.skill-delay-4 { transition-delay: 0.4s; }
+.skill-delay-5 { transition-delay: 0.5s; }
+
+/* ===== Subtle particle fade for trail ===== */
+.trail-particle {
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* ===== Selection styling ===== */
+::selection {
+  background: rgba(65, 105, 225, 0.4);
+  color: white;
+}
